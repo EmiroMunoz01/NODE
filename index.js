@@ -1,106 +1,42 @@
-//hemos creado un titulo
+import {suma,multiplicacion} from './add.js'
 
-const title = document.createElement("h1");
-title.innerText = 'Hola mundo desde JS'
-document.body.append(title)
+//de esta forma hemos importado funciones, pero también pueden ser constantes etc
+console.log(suma(10,20))
+console.log(multiplicacion(10,2))
 
-//hemos creado un boton
+// import addModule from './add.js'
+//también podemos importar de esta forma, pero se importara el js por defecto que hemos establecido 
 
-const botton = document.createElement('button')
-botton.innerText = 'click'
-// le crearemos un evento al boton
+//****************************** */
 
-//ahora cuando hacemos click en el boton se va cargando un hola mundo en la consola
-botton.addEventListener('click', function(){
-    console.log('hola mundo')
-})
-
-//tambien podemos cambiar esto, para que altere el valor de title al hacer un click
-
-botton.addEventListener('click', function(){
-    title.innerText = 'Texto actualizado con JS'
-    alert("Se hizo clic")
-})
-
-document.body.append(botton)
-
-//otro tema importante con JS, es cuando creamos funciones vamos a recibir objetos, y estos objetos pueden ser usados en el DOM
-
-const user = {
-    name : "Emiro",
-    age : "21"
+//tenemos una caracterisca de js que nos sirve cuando traemos datos de un backend por ejemplo
+const person = {
+    name : 'John',
+    address : {
+        city : 'San Francisco'
+    }
 }
 
-function printInfo(user){
-    return '<h1>Hola ' + user.name +'</h1>'
-}
+console.log(person.address.city)
 
-console.log(printInfo(user))
+//en este punto se ejecuta con normalidad, porque las redirecciones existen, lo del address o lo del city, pero que sucede si yo se que existe city pero no se en donde se encuentra ubicado?
 
-document.body.innerHTML = printInfo(user)
+//si location existe imprimir el valor de ciudad, pero si no existe pues no lo accederemos
 
-//de esta forma hemos creado un objeto, que es utilizado por una función que a su vez genera un h1, que es agregado al HTML por medio de la propiedad que hemos creado en el document
+console.log(person.location?.city)
 
-//********** */
+//*********************************** */
 
-//tambien tenemos algo llamado funciones anonimas
-function start(){
-    return 'Starting...'
-}
-console.log(start())
+//hablaremos de asincronia, en React pedimos muchas veces datos a un backend
 
-//pero no es necesario que las funciones tengan un nombrem facilmente puedo hacer esto:
-//estamos creando y ejecutando la función al mimso tiempo, tenemos algo llamado función anonima, que es algo muy usado cuando hay eventos
-
-console.log(function (){
-    return 'Starting...'
-}())
-
-const button = document.createElement('button')
-button.innerText = 'click me'
-
-button.addEventListener('click', function (){
-    alert('clicked')
-})
-
-document.body.append(button)
-
-//********************************* */
-const background = 'red';
-const color = 'black';
-const estaAutorizado = true;
-
-//vamos a continuar la modificacion del boton 
-
-//especial atencion, hemos aplicado una condicional ternaria, que dice que si estaAutorizado es verdadero el color sera azul, pero que si es falso el color sera el definido en la variable background
-
-button.style = `background: ${estaAutorizado ? 'blue' : background}; color:${color}`
+//permite colocar una dirección de internet, traeremos datos de una dirección
 
 
-//*************************************** */
-//ahora hablemos de algo muy importante, los arreglos
+fetch('https://jsonplaceholder.typicode.com/albums')
+    .then(function (){
+        console.log('finalizo la carga')
+    })
 
-//podemos listar varios elementos
+console.log('linea 2')
 
-const names = ['Emiro', 'Jose', 'Antonio']
-
-//recorreremos el arreglo elemento por elemento
-
-for (let i = 0; i < names.length; i++) {
-    const element = names [i];
-    console.log(element);
-}
-
-//este bucle lo podemos reemplazar por:
-//este metodo for each lo que va a esperar es una funcion lo que va a retornar son los valores que va a recibir, lo que hace es recorrer los elementos y los va recibiendo como parametro
-
-//como podemos ver, esto es mas simple que el anterior ejemplo
-console.log("******************")
-
-names.forEach(function (name) {
-    console.log(name)
-});
-
-//es buena idea, pero en React usamos algo llamado una función map
-
-
+//en js cuando ejecutamos logica de navegador no lo bloqueamos, mientras el usuario puede hacer otras cosas mientras se ejecuta la logica se llama asincronia, nos devuelve una promesa mientras el navegador hace otras cosas
