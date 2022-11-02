@@ -1,0 +1,25 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tareas": "node -v && npm audit && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmiroMunoz01/Js-for-React.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmiroMunoz01/Js-for-React/issues"
+  },
+  "homepage": "https://github.com/EmiroMunoz01/Js-for-React#readme",
+  "dependencies": {
+    "alertifyjs": "^1.13.1",
+    "colors": "^1.4.0"
+  }
+}
